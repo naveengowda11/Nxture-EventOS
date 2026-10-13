@@ -1,0 +1,22 @@
+{
+  "name": "nxture-campus-event-os",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered college event management system - NXTURE",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7",
+    "nodemailer": "^7.0.6",
+    "multer": "^2.0.2",
+    "qrcode": "^1.5.4",
+    "pdfkit": "^0.17.2"
+  }
+}
