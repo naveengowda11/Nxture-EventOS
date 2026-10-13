@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a NXTURE Campus Event OS student account.">
+  <title>Create Account | NXTURE Campus Event OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+  <main class="signup-page">
+    <section class="signup-visual">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span>
+          <strong>NXTURE</strong>
+          <small>Campus Event OS</small>
+        </span>
+      </a>
+
+      <div class="visual-content">
+        <span class="eyebrow">JOIN YOUR CAMPUS</span>
+        <h1>Your next event<br><span>starts here.</span></h1>
+        <p>
+          Create your student account once and use NXTURE to discover,
+          register for and track college events.
+        </p>
+
+        <div class="benefit-list">
+          <div><span>✓</span><strong>Discover campus events</strong></div>
+          <div><span>✓</span><strong>Register with your student account</strong></div>
+          <div><span>✓</span><strong>Keep your participation in one place</strong></div>
+        </div>
+      </div>
+
+      <div class="visual-orb orb-one"></div>
+      <div class="visual-orb orb-two"></div>
+    </section>
+
+    <section class="signup-panel">
+      <div class="signup-card">
+        <div class="mobile-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span>
+              <strong>NXTURE</strong>
+              <small>Campus Event OS</small>
+            </span>
+          </a>
+        </div>
+
+        <div class="heading">
+          <span class="section-label">CAMPUS ACCOUNT</span>
+          <h2>Create your account</h2>
+          <p>Use your official college email and details to create your NXTURE account.</p>
+        </div>
+
+        <div class="role-switch" role="tablist" aria-label="Account type">
+          <button class="role-option active" type="button" data-role="student" role="tab" aria-selected="true">Student</button>
+          <button class="role-option" type="button" data-role="faculty" role="tab" aria-selected="false">Faculty</button>
+        </div>
+        <input type="hidden" id="account-role" value="student">
+
+        <form id="signup-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="first-name">First name</label>
+              <input id="first-name" name="firstName" type="text" autocomplete="given-name" placeholder="Enter first name" required>
+              <small class="field-error" id="first-name-error"></small>
+            </div>
+
+            <div class="field">
+              <label for="last-name">Last name</label>
+              <input id="last-name" name="lastName" type="text" autocomplete="family-name" placeholder="Enter last name" required>
+              <small class="field-error" id="last-name-error"></small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">College email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="Enter your college email" required>
+            <small class="field-error" id="email-error"></small>
+            <small class="email-hint">Students from any college can register. Faculty accounts use the official ATME faculty email.</small>
+          </div>
+
+          <button type="button" class="secondary-button full-width" id="send-otp-button" data-initial-otp>Send OTP to college email</button>
+
+          <div id="student-fields">
+            <div class="field">
+              <label for="college">College / Institution</label>
+              <input id="college" name="college" type="text" placeholder="Enter your college name" autocomplete="organization" required>
+              <small class="field-error" id="college-error"></small>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="student-id">Student ID</label>
+                <input id="student-id" name="studentId" type="text" autocomplete="off" placeholder="Enter student ID">
+                <small class="field-error" id="student-id-error"></small>
+              </div>
+
+              <div class="field">
+                <label for="year">Year</label>
+                <select id="year" name="year">
+                  <option value="">Select year</option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                </select>
+                <small class="field-error" id="year-error"></small>
+              </div>
+            </div>
+          </div>
+
+          <div id="faculty-fields" hidden>
+            <div class="field">
+              <label for="designation">Designation</label>
+              <input id="designation" name="designation" type="text" autocomplete="organization-title" placeholder="e.g. Assistant Professor">
+              <small class="field-error" id="designation-error"></small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+              <option value="">Select department</option>
+              <option value="CSE">Computer Science & Engineering</option>
+              <option value="CSE-DS">CSE - Data Science</option>
+              <option value="ISE">Information Science & Engineering</option>
+              <option value="ECE">Electronics & Communication Engineering</option>
+              <option value="EEE">Electrical & Electronics Engineering</option>
+              <option value="ME">Mechanical Engineering</option>
+              <option value="CIVIL">Civil Engineering</option>
+              <option value="OTHER">Other</option>
+            </select>
+            <small class="field-error" id="department-error"></small>
+          </div>
+
+          <div class="otp-panel" id="otp-section" hidden>
+            <div class="otp-panel-head">
+              <div>
+                <strong>Verify college email</strong>
+                <p>A 6-digit OTP will be sent to your official college email.</p>
+              </div>
+              <span id="otp-timer"></span>
+            </div>
+            <div class="otp-actions">
+              <input id="otp" type="text" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
+              <button type="button" class="secondary-button" id="verify-otp-button">Verify OTP</button>
+            </div>
+            <div class="otp-actions secondary-otp-action">
+              <button type="button" class="text-button" id="resend-signup-otp">Send a new OTP</button>
+            </div>
+            <small class="otp-message" id="otp-message" aria-live="polite"></small>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Create a password" required>
+              <button type="button" class="password-toggle" data-target="password">Show</button>
+            </div>
+            <div class="password-strength" id="password-strength">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <small class="strength-text" id="strength-text">Use at least 8 characters.</small>
+            <small class="field-error" id="password-error"></small>
+          </div>
+
+          <div class="field">
+            <label for="confirm-password">Confirm password</label>
+            <div class="password-wrap">
+              <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter your password" required>
+              <button type="button" class="password-toggle" data-target="confirm-password">Show</button>
+            </div>
+            <small class="field-error" id="confirm-password-error"></small>
+          </div>
+
+          <div class="terms-row">
+            <input id="terms" name="terms" type="checkbox" required>
+            <label for="terms">I agree to use NXTURE with my genuine college information and identity details.</label>
+          </div>
+          <small class="field-error" id="terms-error"></small>
+
+          <div class="form-message" id="form-message" aria-live="polite"></div>
+
+          <button class="submit-button" type="submit">
+            <span>Create Account</span>
+            <span>→</span>
+          </button>
+        </form>
+
+        <p class="login-text">
+          Already have an account?
+          <a href="login.html">Sign in</a>
+        </p>
+
+        <a class="back-link" href="index.html">← Back to homepage</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/signup.js"></script>
+</body>
+</html>

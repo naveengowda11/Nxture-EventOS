@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NXTURE College Admin Dashboard">
+  <title>College Admin | NXTURE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+<style>
+.ai-fab{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border:0;border-radius:50%;background:#173a34;color:#fff;font-weight:900;letter-spacing:.3px;box-shadow:0 12px 30px rgba(23,58,52,.25);cursor:pointer;z-index:120;display:grid;place-items:center}.ai-fab:hover{transform:translateY(-2px)}
+.ai-panel{position:fixed;right:24px;bottom:92px;width:min(340px,calc(100vw - 30px));height:min(470px,calc(100vh - 120px));background:#fff;border:1px solid #dfeae6;border-radius:18px;box-shadow:0 20px 55px rgba(20,50,44,.20);z-index:119;display:flex;flex-direction:column;overflow:hidden}.ai-panel[hidden]{display:none}.ai-panel-head{padding:14px 15px;background:#f4faf8;border-bottom:1px solid #e4eeeb;display:flex;align-items:center;justify-content:space-between;gap:10px}.ai-panel-head strong{display:block;color:#153d35;font-size:14px}.ai-panel-head small{display:block;color:#75837f;font-size:10px;margin-top:3px}.ai-panel-head button{border:0;background:transparent;font-size:24px;color:#64736e;cursor:pointer}.ai-messages{flex:1;overflow:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#fbfdfc}.ai-message{max-width:88%;padding:10px 12px;border-radius:13px;white-space:pre-line;font-size:12px;line-height:1.5}.ai-bot{align-self:flex-start;background:#edf7f4;color:#29443e;border-top-left-radius:5px}.ai-user{align-self:flex-end;background:#173a34;color:#fff;border-top-right-radius:5px}.ai-form{display:flex;gap:7px;padding:10px;border-top:1px solid #e4eeeb;background:#fff}.ai-form input{min-width:0;flex:1;border:1px solid #d5e3df;border-radius:9px;padding:9px 10px;outline:none;font-size:12px}.ai-form button{border:0;border-radius:9px;padding:0 12px;background:#173a34;color:#fff;font-size:12px;font-weight:800;cursor:pointer}.ai-form button:disabled{opacity:.55}.ai-note{padding:0 11px 10px;color:#899590;font-size:9px;line-height:1.35;background:#fff}@media(max-width:560px){.ai-fab{right:15px;bottom:15px}.ai-panel{right:15px;bottom:82px;width:min(340px,calc(100vw - 30px));height:min(470px,calc(100vh - 105px))}}
+</style>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span><strong>NXTURE</strong><small>Campus Event OS</small></span>
+      </a>
+
+      <div class="sidebar-label">COLLEGE ADMIN</div>
+
+      <nav class="admin-nav">
+        <a class="nav-item active" href="#overview" data-section="overview"><span>⌂</span> Overview</a>
+        <a class="nav-item" href="#events" data-section="events"><span>▦</span> Events</a>
+        <a class="nav-item" href="#create-event" data-section="create-event"><span>＋</span> Create Event</a>
+        <a class="nav-item" href="#registrations" data-section="registrations"><span>✓</span> Registrations</a>
+        <a class="nav-item" href="#analytics" data-section="analytics"><span>◌</span> Analytics</a>
+        <a class="nav-item" href="#students" data-section="students"><span>○</span> Students</a>
+        <a class="nav-item" href="#faculty" data-section="faculty"><span>◉</span> Faculty</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="admin-status">
+          <span class="status-dot"></span>
+          <div><strong>Admin workspace</strong><small>Live database data</small></div>
+        </div>
+        <button class="logout-button" id="logout-button"><span>↪</span> Log out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation"><span></span><span></span><span></span></button>
+        <div>
+          <span class="section-label">COLLEGE ADMINISTRATION</span>
+          <h1 id="page-title">Overview</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="college-summary">
+            <strong id="admin-name">College Admin</strong>
+            <small id="admin-college">College information unavailable</small>
+          </div>
+          <div class="admin-avatar" id="admin-avatar">A</div>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <section class="admin-section active-section" id="overview">
+          <div class="section-intro">
+            <div>
+              <span class="section-label">CAMPUS OVERVIEW</span>
+              <h2>Manage your college events.</h2>
+              <p>All numbers and event records below come from the connected college data.</p>
+            </div>
+            <button class="primary-button" data-go="create-event">Create Event <span>＋</span></button>
+          </div>
+
+          <div class="admin-stats">
+            <article class="admin-stat"><span class="stat-icon teal">▦</span><div><small>Total Events</small><strong id="total-events">0</strong><em>No event records</em></div></article>
+            <article class="admin-stat"><span class="stat-icon orange">✓</span><div><small>Total Registrations</small><strong id="total-registrations">0</strong><em>No registrations</em></div></article>
+            <article class="admin-stat"><span class="stat-icon purple">○</span><div><small>Students</small><strong id="total-students">0</strong><em>No student records</em></div></article>
+            <article class="admin-stat"><span class="stat-icon green">◷</span><div><small>Upcoming Events</small><strong id="upcoming-events">0</strong><em>No upcoming events</em></div></article>
+            <article class="admin-stat"><span class="stat-icon teal">◉</span><div><small>Attendance</small><strong id="total-attendance">0</strong><em>No attendance records</em></div></article>
+            <article class="admin-stat"><span class="stat-icon purple">▤</span><div><small>Certificates</small><strong id="total-certificates">0</strong><em>No certificates issued</em></div></article>
+          </div>
+
+          <div class="overview-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <div><span class="section-label">EVENT ACTIVITY</span><h3>Recent Events</h3></div>
+                <button class="text-button" data-go="events">View all</button>
+              </div>
+              <div id="recent-events" class="table-wrap">
+                <div class="empty-state"><div class="empty-icon">+</div><strong>No events available</strong><p>Create an event to start building your campus event records.</p></div>
+              </div>
+            </section>
+
+            <section class="panel ai-admin-panel">
+              <div class="ai-heading"><div class="ai-icon">✦</div><div><span class="section-label">AI ASSISTANCE</span><h3>Event insights</h3></div></div>
+              <div class="ai-empty">
+                <strong>Insights will appear with real event data.</strong>
+                <p>Registration patterns, feedback analysis and other AI-assisted insights will be generated after data is available.</p>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="admin-section" id="analytics">
+          <div class="section-intro">
+            <div><span class="section-label">LIVE ANALYTICS</span><h2>Event analytics</h2><p>These insights are calculated from the current college database. Nothing is hardcoded.</p></div>
+          </div>
+          <div class="overview-grid">
+            <section class="panel"><div class="panel-heading"><div><span class="section-label">YEARLY ACTIVITY</span><h3>Events conducted by month</h3><p>Shows every month of the current year, including months with no events.</p></div></div><div id="monthly-event-chart" class="simple-chart"></div></section>
+            <section class="panel"><div class="panel-heading"><div><span class="section-label">EVENT MIX</span><h3>Events by category</h3></div></div><div id="event-category-chart" class="simple-chart"></div></section>
+          </div>
+          <div class="overview-grid" style="margin-top:18px">
+            <section class="panel"><div class="panel-heading"><div><span class="section-label">LIFECYCLE</span><h3>Event status</h3></div></div><div id="event-status-analytics" class="analytics-list"></div></section>
+            <section class="panel"><div class="panel-heading"><div><span class="section-label">REGISTRATIONS</span><h3>Registrations by category</h3></div></div><div id="category-analytics" class="analytics-list"></div></section>
+          </div>
+          <section class="panel" style="margin-top:18px"><div class="panel-heading"><div><span class="section-label">PAYMENTS</span><h3>Paid registration status</h3></div></div><div id="payment-analytics" class="analytics-list"></div></section>
+        </section>
+
+        <section class="admin-section" id="events">
+          <div class="section-intro">
+            <div><span class="section-label">EVENT MANAGEMENT</span><h2>Events</h2><p>Create and manage events organized by your college.</p></div>
+            <button class="primary-button" data-go="create-event">Create Event <span>＋</span></button>
+          </div>
+          <section class="panel">
+            <div class="panel-heading event-toolbar">
+              <div><h3>All Events</h3><span class="record-count" id="event-record-count">0 records</span></div>
+              <div class="toolbar-actions">
+                <input id="event-search" type="search" placeholder="Search events..." aria-label="Search events">
+                <select id="event-category"><option value="all">All categories</option><option value="hackathon">Hackathon</option><option value="workshop">Workshop</option><option value="quiz">Quiz</option><option value="seminar">Seminar</option><option value="competition">Competition</option><option value="other">Other</option></select>
+              </div>
+            </div>
+            <div id="events-table" class="table-wrap">
+              <div class="empty-state"><div class="empty-icon">▦</div><strong>No events available</strong><p>Events created through this dashboard will appear here.</p></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-section" id="create-event">
+          <div class="section-intro">
+            <div><span class="section-label">EVENT MANAGEMENT</span><h2>Create an event.</h2><p>Enter the actual event information. The backend will store these values in the events table.</p></div>
+          </div>
+
+          <section class="panel form-panel">
+            <form id="event-form" novalidate>
+              <div class="form-section-title"><span>01</span><div><strong>Basic information</strong><small>What is the event?</small></div></div>
+              <div class="form-grid">
+                <div class="field field-wide"><label for="event-title">Event title *</label><input id="event-title" name="title" required placeholder="Enter the event title"><small class="error" id="title-error"></small></div>
+                <div class="field"><label for="event-category-input">Category *</label><select id="event-category-input" name="category" required><option value="">Select category</option><option value="hackathon">Hackathon</option><option value="workshop">Workshop</option><option value="quiz">Quiz</option><option value="seminar">Seminar</option><option value="competition">Competition</option><option value="other">Other</option></select><small class="error" id="category-error"></small></div>
+                <div class="field field-wide"><label for="event-description">Short description *</label><textarea id="event-description" name="description" rows="4" required placeholder="Give students a clear overview of the event."></textarea><small class="error" id="description-error"></small></div>
+                <div class="field field-wide"><label for="event-objectives">Objectives</label><textarea id="event-objectives" rows="3" placeholder="What should participants learn, build, solve or achieve?"></textarea></div>
+                <div class="field field-wide"><label for="event-prizes">Prize details</label><textarea id="event-prizes" rows="3" placeholder="Example: 1st Prize ₹25,000 · 2nd Prize ₹15,000 · Special awards..."></textarea></div>
+                <div class="field"><label for="event-certificate-details">Certificate details</label><input id="event-certificate-details" placeholder="Participation / finalist / winner certificates"></div>
+                <div class="field"><label for="event-participation-details">Participation details</label><input id="event-participation-details" placeholder="Team size, participation fee, materials, etc."></div>
+                <div class="field field-wide"><label for="event-eligibility">Eligibility / important requirements</label><textarea id="event-eligibility" rows="3" placeholder="Who can participate? Mention branches, years, team rules, prerequisites, etc."></textarea></div>
+                <div class="field field-wide"><label for="event-rules">Rules & guidelines</label><textarea id="event-rules" rows="3" placeholder="Competition rules, reporting instructions, code of conduct, required documents..."></textarea></div>
+                <div class="field"><label for="event-faculty">Responsible faculty</label><select id="event-faculty"><option value="">Select faculty</option></select></div>
+                <div class="field"><label for="event-image">Event poster/image</label><input id="event-image" type="file" accept="image/png,image/jpeg,image/webp"><small>JPG, PNG or WEBP • max 5 MB</small></div>
+              </div>
+
+              <div class="form-section-title"><span>02</span><div><strong>Participation & reach</strong><small>Decide who can register for this event.</small></div></div>
+              <div class="form-grid">
+                <div class="field"><label for="event-participation-type">Participation type</label><select id="event-participation-type"><option value="college">My college only</option><option value="inter_college">Inter-college</option><option value="open">Open to all colleges</option></select><small>Inter-college allows verified students from other colleges to participate.</small></div>
+                <div class="field field-wide"><div class="info-note"><strong>Organizer</strong><span>ATME College of Engineering</span><small>The organizing college remains separate from each participant's college.</small></div></div>
+              </div>
+
+              <div class="form-section-title"><span>03</span><div><strong>Schedule & location</strong><small>When and where is it happening?</small></div></div>
+              <div class="form-grid">
+                <div class="field"><label for="event-date">Date *</label><input id="event-date" name="date" type="date" required><small class="error" id="date-error"></small></div>
+                <div class="field"><label for="event-time">Time *</label><input id="event-time" name="time" type="time" required><small class="error" id="time-error"></small></div>
+                <div class="field"><label for="event-venue">Venue *</label><input id="event-venue" name="venue" required placeholder="Venue / hall / online"><small class="error" id="venue-error"></small></div>
+                <div class="field"><label for="event-capacity">Participant limit</label><input id="event-capacity" name="capacity" type="number" min="1" placeholder="Leave blank if not limited"><small class="error" id="capacity-error"></small></div>
+              </div>
+
+              <div class="form-section-title"><span>04</span><div><strong>Registration</strong><small>How students can participate.</small></div></div>
+              <div class="form-grid">
+                <div class="field"><label for="registration-start">Registration opens</label><input id="registration-start" name="registrationStart" type="datetime-local"></div>
+                <div class="field"><label for="registration-end">Registration closes</label><input id="registration-end" name="registrationEnd" type="datetime-local"></div>
+                <div class="field"><label class="check-row"><input id="event-paid" type="checkbox"> Paid event</label><small>Enable payment collection using a QR code.</small></div>
+                <div class="field" id="fee-field" hidden><label for="event-fee">Registration fee (₹)</label><input id="event-fee" type="number" min="1" step="0.01" placeholder="e.g. 250"></div>
+                <div class="field field-wide" id="qr-field" hidden><label for="payment-qr">Payment QR image</label><input id="payment-qr" type="file" accept="image/png,image/jpeg,image/webp"><small>Students will see this QR before entering their payment reference.</small></div>
+              </div>
+
+              <div class="form-section-title"><span>05</span><div><strong>Event phases & live updates</strong><small>Use this for multi-phase events such as hackathons, competitions and selection rounds.</small></div></div>
+              <div class="phase-builder" id="phase-builder"></div>
+              <button type="button" class="secondary-button" id="add-phase-button">＋ Add Phase</button>
+              <div class="form-message" id="event-form-message"></div>
+              <div class="form-actions"><button type="button" class="secondary-button" data-go="events">Cancel</button><button type="submit" class="primary-button" id="create-event-submit">Create Event <span>→</span></button></div>
+            </form>
+          </section>
+        </section>
+
+        <section class="admin-section" id="registrations">
+          <div class="section-intro">
+            <div><span class="section-label">PARTICIPANTS</span><h2>Registrations</h2><p>View students registered for your college events.</p></div>
+          </div>
+          <section class="panel">
+            <div class="panel-heading">
+              <div><h3>Event registrations</h3><span class="record-count" id="registration-record-count">0 records</span></div>
+              <select id="registration-event-filter"><option value="all">All events</option></select>
+            </div>
+            <div id="registrations-table" class="table-wrap">
+              <div class="empty-state"><div class="empty-icon">✓</div><strong>No registrations available</strong><p>Student registrations will appear here after students register for your events.</p></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-section" id="faculty">
+          <div class="section-intro">
+            <div><span class="section-label">COLLEGE USERS</span><h2>Faculty</h2><p>Create and manage faculty accounts using the real faculty information provided by the college.</p></div>
+          </div>
+
+          <section class="panel form-panel faculty-form-panel">
+            <div class="panel-heading"><div><span class="section-label">FACULTY ACCOUNT</span><h3>Create faculty account</h3></div></div>
+            <form id="faculty-form">
+              <div class="form-grid">
+                <div class="field"><label for="faculty-first-name">First name</label><input id="faculty-first-name" type="text" autocomplete="given-name"><small class="error" id="faculty-first-name-error"></small></div>
+                <div class="field"><label for="faculty-last-name">Last name</label><input id="faculty-last-name" type="text" autocomplete="family-name"><small class="error" id="faculty-last-name-error"></small></div>
+                <div class="field field-wide"><label for="faculty-email">College email</label><input id="faculty-email" type="email" placeholder="facultyname@atme.edu.in" autocomplete="email"><small class="error" id="faculty-email-error"></small></div>
+                <div class="field"><label for="faculty-department">Department</label><input id="faculty-department" type="text" placeholder="CSE - Data Science"><small class="error" id="faculty-department-error"></small></div>
+                <div class="field"><label for="faculty-designation">Designation</label><input id="faculty-designation" type="text" placeholder="Assistant Professor"><small class="error" id="faculty-designation-error"></small></div>
+                <div class="field field-wide"><label for="faculty-password">Initial password</label><input id="faculty-password" type="password" minlength="8"><small class="error" id="faculty-password-error"></small></div>
+              </div>
+              <div class="form-message" id="faculty-form-message"></div>
+              <div class="form-actions"><button type="reset" class="secondary-button">Clear</button><button type="submit" class="primary-button" id="create-faculty-submit"><span>Create Faculty Account</span><span>→</span></button></div>
+            </form>
+          </section>
+
+          <section class="panel faculty-list-panel">
+            <div class="panel-heading"><div><span class="section-label">FACULTY DIRECTORY</span><h3>Faculty accounts <span class="record-count" id="faculty-record-count">0 records</span></h3></div><input class="toolbar-input" id="faculty-search" type="search" placeholder="Search faculty"></div>
+            <div class="table-wrap" id="faculty-table"></div>
+          </section>
+        </section>
+
+        <section class="admin-section" id="students">
+          <div class="section-intro">
+            <div><span class="section-label">CAMPUS USERS</span><h2>Students</h2><p>Students connected to your college account.</p></div>
+          </div>
+          <section class="panel">
+            <div class="panel-heading">
+              <div><h3>Student directory</h3><span class="record-count" id="student-record-count">0 records</span></div>
+              <input id="student-search" class="toolbar-input" type="search" placeholder="Search students..." aria-label="Search students">
+            </div>
+            <div id="students-table" class="table-wrap">
+              <div class="empty-state"><div class="empty-icon">○</div><strong>No student records available</strong><p>Students who belong to your college will appear here.</p></div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="manage-modal" id="manage-event-modal" hidden>
+    <div class="manage-modal-card">
+      <button class="modal-close" id="close-manage-modal" type="button">×</button>
+      <span class="section-label">EVENT MANAGEMENT</span>
+      <h3 id="manage-event-title">Event</h3>
+      <p id="manage-event-meta"></p>
+      <div class="manage-event-phase-panel">
+        <div class="panel-heading"><div><span class="section-label">LIVE EVENT UPDATES</span><h3>Phases & results</h3><p>Update a phase and publish its result when it is completed. Registered students receive an in-app notification.</p></div></div>
+        <div id="manage-event-phases" class="phase-builder"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 4px"><button class="secondary-button" id="manage-add-phase" type="button">＋ Add Phase</button><button class="primary-button" id="save-phases-button" type="button">Save Phases & Updates</button></div>
+      </div>
+      <div class="manage-actions">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;width:100%"><select id="manage-event-status" class="toolbar-input" style="min-width:170px"></select><button class="primary-button" id="update-event-status-button" type="button">Update Status</button></div>
+        <button class="secondary-button" id="edit-event-button" type="button">Edit Event</button>
+        <button class="danger-button" id="delete-event-button" type="button">Delete Event</button>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="ai-fab" id="ai-assistant-open" aria-label="Open NXTURE AI Assistant">AI</div>
+<section class="ai-panel" id="ai-assistant-panel" hidden aria-label="NXTURE AI Assistant">
+  <div class="ai-panel-head"><div><strong>NXTURE AI Assistant</strong><small id="ai-assistant-subtitle">Answers from information available on NXTURE</small></div><button id="ai-assistant-close" type="button" aria-label="Close AI Assistant">×</button></div>
+  <div class="ai-messages" id="ai-assistant-messages"><div class="ai-message ai-bot" id="ai-welcome-message">Hi! Ask me about NXTURE.</div></div>
+  <form class="ai-form" id="ai-assistant-form"><input id="ai-assistant-input" type="text" maxlength="500" placeholder="Ask about events..." autocomplete="off"><button type="submit">Send</button></form>
+  <div class="ai-note">Answers are based on information currently available in NXTURE.</div>
+</section>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+  <script src="js/admin-dashboard.js"></script>
+  <script>
+function initAiAssistant(){const open=document.getElementById('ai-assistant-open'),close=document.getElementById('ai-assistant-close'),panel=document.getElementById('ai-assistant-panel'),form=document.getElementById('ai-assistant-form'),input=document.getElementById('ai-assistant-input'),messages=document.getElementById('ai-assistant-messages');if(!open||!close||!panel||!form||!input||!messages)return;const user=JSON.parse(localStorage.getItem('nxture_user')||'null');const role=user?.role||'student';const labels={student:['Student','Ask about events, registration, payments, phases or results.'],faculty:['Faculty','Ask about assigned events, participants, attendance, certificates or payments.'],admin:['Admin','Ask about events, registrations, attendance, certificates or payment counts.']};const info=labels[role]||labels.student;document.getElementById('ai-assistant-subtitle').textContent=info[1];document.getElementById('ai-welcome-message').textContent=`Hi! I’m the NXTURE AI Assistant for ${info[0]}. ${info[1]}`;const addMessage=(text,type)=>{const d=document.createElement('div');d.className=`ai-message ${type==='user'?'ai-user':'ai-bot'}`;d.textContent=text;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;return d};open.addEventListener('click',()=>{panel.hidden=false;input.focus()});close.addEventListener('click',()=>panel.hidden=true);form.addEventListener('submit',async e=>{e.preventDefault();const query=input.value.trim();if(!query)return;addMessage(query,'user');input.value='';input.disabled=true;form.querySelector('button').disabled=true;const thinking=addMessage('Checking the information published on NXTURE...','bot');try{const r=await fetch('/api/ai-assistant',{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${localStorage.getItem('nxture_token')}`},body:JSON.stringify({query})});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.message||'Unable to answer right now.');thinking.textContent=d.answer||'I could not find that information in the website data.'}catch(err){thinking.textContent=err.message||'Unable to answer right now.'}finally{input.disabled=false;form.querySelector('button').disabled=false;input.focus()}})}
+document.addEventListener('DOMContentLoaded',initAiAssistant);
+</script>
+</body>
+</html>

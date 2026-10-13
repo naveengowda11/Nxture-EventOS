@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NXTURE Campus Event OS login.">
+  <title>Login | NXTURE Campus Event OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-visual">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span>
+          <strong>NXTURE</strong>
+          <small>Campus Event OS</small>
+        </span>
+      </a>
+
+      <div class="visual-content">
+        <span class="eyebrow">CAMPUS EVENT MANAGEMENT</span>
+        <h1>Everything happening<br><span>on campus, together.</span></h1>
+        <p>
+          Discover college events, manage registrations and keep campus
+          activities organized from one platform.
+        </p>
+
+        <div class="visual-stats">
+          <div>
+            <strong>01</strong>
+            <span>Discover events</span>
+          </div>
+          <div>
+            <strong>02</strong>
+            <span>Register & participate</span>
+          </div>
+          <div>
+            <strong>03</strong>
+            <span>Manage campus activity</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-orb orb-one"></div>
+      <div class="visual-orb orb-two"></div>
+      <div class="visual-grid"></div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-card">
+        <div class="mobile-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span>
+              <strong>NXTURE</strong>
+              <small>Campus Event OS</small>
+            </span>
+          </a>
+        </div>
+
+        <div class="auth-heading">
+          <span class="section-label">WELCOME BACK</span>
+          <h2>Sign in to NXTURE</h2>
+          <p>Access your campus event workspace.</p>
+        </div>
+
+        <div class="role-switch" role="tablist" aria-label="Account type">
+          <button class="role-option active" type="button" data-role="student" role="tab" aria-selected="true">Student</button>
+          <button class="role-option" type="button" data-role="faculty" role="tab" aria-selected="false">Faculty</button>
+          <button class="role-option" type="button" data-role="admin" role="tab" aria-selected="false">College Admin</button>
+        </div>
+
+        <form id="login-form" novalidate>
+          <input type="hidden" id="role" name="role" value="student">
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="Enter your email address"
+              required
+            >
+            <small class="field-error" id="email-error"></small>
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label for="password">Password</label>
+              <a href="#" id="forgot-password">Forgot password?</a>
+            </div>
+            <div class="password-wrap">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Enter your password"
+                required
+              >
+              <button type="button" class="password-toggle" id="password-toggle" aria-label="Show password">
+                Show
+              </button>
+            </div>
+            <small class="field-error" id="password-error"></small>
+          </div>
+
+          <div class="login-otp-box" id="login-otp-box" hidden>
+            <div class="otp-panel-head">
+              <div>
+                <strong>Verify your college email</strong>
+                <p>Enter the 6-digit OTP sent to your official college email.</p>
+              </div>
+              <span id="login-otp-timer"></span>
+            </div>
+            <div class="otp-actions">
+              <input id="login-otp" type="text" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
+              <button type="button" class="secondary-button" id="verify-login-otp">Verify & Sign In</button>
+            </div>
+            <button type="button" class="text-button" id="resend-login-otp">Send a new OTP</button>
+            <small class="otp-message" id="login-otp-message" aria-live="polite"></small>
+          </div>
+
+          <div class="form-message" id="form-message" aria-live="polite"></div>
+
+          <button class="submit-button" type="submit">
+            <span>Sign In</span>
+            <span>→</span>
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <p class="signup-text">
+          Don't have an account?
+          <a href="signup.html">Create an account</a>
+        </p>
+
+        <p class="security-note">
+          Your account access will be verified by the NXTURE authentication service.
+        </p>
+
+        <a class="back-link" href="index.html">← Back to homepage</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
